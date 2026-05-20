@@ -25,7 +25,7 @@ namespace KSM_SolidEdge
             }
         }
 
-        public static SolidEdgeFramework.Application GetInstance()
+        public static SolidEdgeFramework.Application GetInstance(bool is_seCreate)
         {
             try
             {
@@ -42,13 +42,19 @@ namespace KSM_SolidEdge
             }
             catch (Exception)
             {
-                // 새로 실행
-                Type seType = Type.GetTypeFromProgID("SolidEdge.Application");
-                _seApp = (SolidEdgeFramework.Application)Activator.CreateInstance(seType);
-                _seApp.Visible = true;
+                if (is_seCreate) {
+                    // 새로 실행
+                    Type seType = Type.GetTypeFromProgID("SolidEdge.Application");
+                    _seApp = (SolidEdgeFramework.Application)Activator.CreateInstance(seType);
+                }
             }
 
             return _seApp;
+        }
+
+        public static SolidEdgeFramework.Application GetInstance()
+        {
+            return GetInstance(true);
         }
     }
 }

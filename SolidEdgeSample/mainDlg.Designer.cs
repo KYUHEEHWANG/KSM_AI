@@ -31,6 +31,9 @@ namespace KSM_SolidEdge
         {
             this.btnExecute = new System.Windows.Forms.Button();
             this.grpSource = new System.Windows.Forms.GroupBox();
+            this.btnResultExcelBrowse = new System.Windows.Forms.Button();
+            this.txtResultExcelPath = new System.Windows.Forms.TextBox();
+            this.lblResultExcel = new System.Windows.Forms.Label();
             this.btnSourceBrowse = new System.Windows.Forms.Button();
             this.txtSourcePath = new System.Windows.Forms.TextBox();
             this.lblSource = new System.Windows.Forms.Label();
@@ -41,6 +44,7 @@ namespace KSM_SolidEdge
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.cboImageType = new System.Windows.Forms.ComboBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.lblRecentRowsHint = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.colNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -60,7 +64,7 @@ namespace KSM_SolidEdge
             // btnExecute
             // 
             this.btnExecute.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.btnExecute.Location = new System.Drawing.Point(650, 590);
+            this.btnExecute.Location = new System.Drawing.Point(650, 618);
             this.btnExecute.Name = "btnExecute";
             this.btnExecute.Size = new System.Drawing.Size(120, 30);
             this.btnExecute.TabIndex = 0;
@@ -70,15 +74,44 @@ namespace KSM_SolidEdge
             // 
             // grpSource
             // 
+            this.grpSource.Controls.Add(this.btnResultExcelBrowse);
+            this.grpSource.Controls.Add(this.txtResultExcelPath);
+            this.grpSource.Controls.Add(this.lblResultExcel);
             this.grpSource.Controls.Add(this.btnSourceBrowse);
             this.grpSource.Controls.Add(this.txtSourcePath);
             this.grpSource.Controls.Add(this.lblSource);
             this.grpSource.Location = new System.Drawing.Point(10, 10);
             this.grpSource.Name = "grpSource";
-            this.grpSource.Size = new System.Drawing.Size(760, 80);
+            this.grpSource.Size = new System.Drawing.Size(760, 108);
             this.grpSource.TabIndex = 1;
             this.grpSource.TabStop = false;
             this.grpSource.Text = "3D 파일 위치";
+            // 
+            // btnResultExcelBrowse
+            // 
+            this.btnResultExcelBrowse.Location = new System.Drawing.Point(630, 52);
+            this.btnResultExcelBrowse.Name = "btnResultExcelBrowse";
+            this.btnResultExcelBrowse.Size = new System.Drawing.Size(100, 26);
+            this.btnResultExcelBrowse.TabIndex = 5;
+            this.btnResultExcelBrowse.Text = "찾아보기...";
+            this.btnResultExcelBrowse.UseVisualStyleBackColor = true;
+            this.btnResultExcelBrowse.Click += new System.EventHandler(this.btnResultExcelBrowse_Click);
+            // 
+            // txtResultExcelPath
+            // 
+            this.txtResultExcelPath.Location = new System.Drawing.Point(100, 54);
+            this.txtResultExcelPath.Name = "txtResultExcelPath";
+            this.txtResultExcelPath.Size = new System.Drawing.Size(520, 21);
+            this.txtResultExcelPath.TabIndex = 4;
+            // 
+            // lblResultExcel
+            // 
+            this.lblResultExcel.AutoSize = true;
+            this.lblResultExcel.Location = new System.Drawing.Point(15, 58);
+            this.lblResultExcel.Name = "lblResultExcel";
+            this.lblResultExcel.Size = new System.Drawing.Size(57, 12);
+            this.lblResultExcel.TabIndex = 3;
+            this.lblResultExcel.Text = "엑셀 파일";
             // 
             // btnSourceBrowse
             // 
@@ -137,7 +170,7 @@ namespace KSM_SolidEdge
             this.grpOutput.Controls.Add(this.btnOutputBrowse);
             this.grpOutput.Controls.Add(this.txtOutputPath);
             this.grpOutput.Controls.Add(this.lblOutput);
-            this.grpOutput.Location = new System.Drawing.Point(12, 96);
+            this.grpOutput.Location = new System.Drawing.Point(12, 124);
             this.grpOutput.Name = "grpOutput";
             this.grpOutput.Size = new System.Drawing.Size(760, 80);
             this.grpOutput.TabIndex = 2;
@@ -147,7 +180,7 @@ namespace KSM_SolidEdge
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.cboImageType);
-            this.groupBox1.Location = new System.Drawing.Point(12, 182);
+            this.groupBox1.Location = new System.Drawing.Point(12, 210);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(760, 55);
             this.groupBox1.TabIndex = 3;
@@ -164,13 +197,23 @@ namespace KSM_SolidEdge
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.lblRecentRowsHint);
             this.groupBox2.Controls.Add(this.dataGridView1);
-            this.groupBox2.Location = new System.Drawing.Point(12, 243);
+            this.groupBox2.Location = new System.Drawing.Point(12, 271);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(758, 337);
             this.groupBox2.TabIndex = 4;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "변환 결과 목록";
+            // 
+            // lblRecentRowsHint
+            // 
+            this.lblRecentRowsHint.AutoSize = true;
+            this.lblRecentRowsHint.Location = new System.Drawing.Point(17, 22);
+            this.lblRecentRowsHint.MaximumSize = new System.Drawing.Size(720, 0);
+            this.lblRecentRowsHint.Name = "lblRecentRowsHint";
+            this.lblRecentRowsHint.Size = new System.Drawing.Size(0, 12);
+            this.lblRecentRowsHint.TabIndex = 1;
             // 
             // dataGridView1
             // 
@@ -182,11 +225,11 @@ namespace KSM_SolidEdge
             this.colStatus,
             this.colFileName,
             this.colResult});
-            this.dataGridView1.Location = new System.Drawing.Point(17, 21);
+            this.dataGridView1.Location = new System.Drawing.Point(17, 44);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowTemplate.Height = 23;
-            this.dataGridView1.Size = new System.Drawing.Size(735, 304);
+            this.dataGridView1.Size = new System.Drawing.Size(735, 281);
             this.dataGridView1.TabIndex = 0;
             // 
             // colNo
@@ -218,7 +261,7 @@ namespace KSM_SolidEdge
             // 
             // btnReset
             // 
-            this.btnReset.Location = new System.Drawing.Point(398, 590);
+            this.btnReset.Location = new System.Drawing.Point(398, 618);
             this.btnReset.Name = "btnReset";
             this.btnReset.Size = new System.Drawing.Size(120, 30);
             this.btnReset.TabIndex = 5;
@@ -228,7 +271,7 @@ namespace KSM_SolidEdge
             // 
             // progressBar1
             // 
-            this.progressBar1.Location = new System.Drawing.Point(27, 593);
+            this.progressBar1.Location = new System.Drawing.Point(27, 621);
             this.progressBar1.Name = "progressBar1";
             this.progressBar1.Size = new System.Drawing.Size(365, 23);
             this.progressBar1.TabIndex = 1;
@@ -236,7 +279,7 @@ namespace KSM_SolidEdge
             // lblStatus
             // 
             this.lblStatus.AutoSize = true;
-            this.lblStatus.Location = new System.Drawing.Point(167, 619);
+            this.lblStatus.Location = new System.Drawing.Point(167, 647);
             this.lblStatus.Name = "lblStatus";
             this.lblStatus.Size = new System.Drawing.Size(57, 12);
             this.lblStatus.TabIndex = 6;
@@ -246,7 +289,7 @@ namespace KSM_SolidEdge
             // 
             this.btnCancel.BackColor = System.Drawing.SystemColors.ControlDark;
             this.btnCancel.ForeColor = System.Drawing.SystemColors.Window;
-            this.btnCancel.Location = new System.Drawing.Point(524, 590);
+            this.btnCancel.Location = new System.Drawing.Point(524, 618);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(120, 30);
             this.btnCancel.TabIndex = 7;
@@ -258,7 +301,7 @@ namespace KSM_SolidEdge
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(784, 652);
+            this.ClientSize = new System.Drawing.Size(784, 680);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.lblStatus);
             this.Controls.Add(this.progressBar1);
@@ -292,6 +335,9 @@ namespace KSM_SolidEdge
         private System.Windows.Forms.Label lblSource;
         private System.Windows.Forms.Button btnSourceBrowse;
         private System.Windows.Forms.TextBox txtSourcePath;
+        private System.Windows.Forms.Label lblResultExcel;
+        private System.Windows.Forms.TextBox txtResultExcelPath;
+        private System.Windows.Forms.Button btnResultExcelBrowse;
         private System.Windows.Forms.Button btnOutputBrowse;
         private System.Windows.Forms.TextBox txtOutputPath;
         private System.Windows.Forms.Label lblOutput;
@@ -299,6 +345,7 @@ namespace KSM_SolidEdge
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.ComboBox cboImageType;
         private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.Label lblRecentRowsHint;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Button btnReset;
         private System.Windows.Forms.DataGridViewTextBoxColumn colNo;

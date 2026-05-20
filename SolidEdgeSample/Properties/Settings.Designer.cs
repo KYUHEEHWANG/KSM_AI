@@ -22,5 +22,29 @@ namespace KSM_SolidEdge.Properties {
                 return defaultInstance;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string LastSourcePath {
+            get {
+                return ((string)(this["LastSourcePath"]));
+            }
+            set {
+                this["LastSourcePath"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string LastOutputPath {
+            get {
+                return ((string)(this["LastOutputPath"]));
+            }
+            set {
+                this["LastOutputPath"] = value;
+            }
+        }
     }
 }
